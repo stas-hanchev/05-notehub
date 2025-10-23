@@ -6,11 +6,14 @@ import { useDebounce } from 'use-debounce';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import NoteList from '../NoteList/NoteList';
 import Pagination from '../Pagination/Pagination';
+import Modal from '../Modal/Modal';
+import NoteForm from '../NoteForm/NoteForm';
 
 function App() {
   const [query, setQuery] = useState<string>('');
   const [page, setPage] = useState<number>(1);
   const [debouncedQuery] = useDebounce(query, 500);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const { data } = useQuery({
     queryKey: ['notes', page, debouncedQuery],
@@ -26,14 +29,25 @@ function App() {
     setPage(1);
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  }
+
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
         <SearchBox value={query} onSearch={handleSearch} />
         <Pagination totalPages={totalPages} currentPage={page} onPageChange={setPage}/>
-        <button className={css.button}>Create note +</button>
+        <button className={css.button} onClick={openModal}>Create note +</button>
         {notes.length > 0 && (<NoteList notes={notes} />)}
       </header>
+      {isModalOpen && (<Modal onClose={closeModal}>
+        <NoteForm onClose={closeModal}></NoteForm>
+      </Modal>)}
     </div>
   );
 }
