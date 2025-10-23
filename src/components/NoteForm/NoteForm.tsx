@@ -26,7 +26,6 @@ interface FormValues {
     title: string;
     content: string;
     tag: NoteTag;
-    
 }
 
 const initialValues: FormValues = {
@@ -40,7 +39,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
     const mutation = useMutation({
         mutationFn: createNote,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['posts'] });
+            queryClient.invalidateQueries({ queryKey: ['notes'] });
             alert('Post created!');
             onClose();
         }
