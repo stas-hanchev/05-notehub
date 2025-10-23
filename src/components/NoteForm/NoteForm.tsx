@@ -15,8 +15,7 @@ const PostSchema = Yup.object/*.shape*/({
         .max(50, 'max 50 chars')
         .required('Title is required!'),
     content: Yup.string()
-        .max(500, 'max 500 chars')
-        .required('Body is required!'),
+        .max(500, 'max 500 chars'),
     tag: Yup.mixed<NoteTag>()
         .oneOf(['Work', 'Personal', 'Meeting', 'Shopping', 'Todo'], 'Invalid tag')
         .required('Tag is required!'),

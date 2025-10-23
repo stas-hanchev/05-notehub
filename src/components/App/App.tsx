@@ -41,7 +41,7 @@ function App() {
     <div className={css.app}>
       <header className={css.toolbar}>
         <SearchBox value={query} onSearch={handleSearch} />
-        <Pagination totalPages={totalPages} currentPage={page} onPageChange={setPage}/>
+        {totalPages > 1 && (<Pagination totalPages={totalPages} currentPage={page} onPageChange={setPage}/>)}
         <button className={css.button} onClick={openModal}>Create note +</button>
       </header>
       {notes.length > 0 && (<NoteList notes={notes} />)}

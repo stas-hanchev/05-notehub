@@ -6,7 +6,7 @@ interface SearchBoxProps {
 }
 
 
-export default function SerchBox({value, onSearch}: SearchBoxProps) {
+export default function SearchBox({value, onSearch}: SearchBoxProps) {
     return (
         <input
             className={css.input}
