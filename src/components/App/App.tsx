@@ -43,8 +43,8 @@ function App() {
         <SearchBox value={query} onSearch={handleSearch} />
         <Pagination totalPages={totalPages} currentPage={page} onPageChange={setPage}/>
         <button className={css.button} onClick={openModal}>Create note +</button>
-        {notes.length > 0 && (<NoteList notes={notes} />)}
       </header>
+      {notes.length > 0 && (<NoteList notes={notes} />)}
       {isModalOpen && (<Modal onClose={closeModal}>
         <NoteForm onClose={closeModal}></NoteForm>
       </Modal>)}
